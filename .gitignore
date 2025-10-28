@@ -1,0 +1,115 @@
+.vscode/
+.idea/
+*.iml
+*.swp
+.DS_Store
+build/
+#JAVA
+target/
+*.class
+*.jar
+*.war
+#Python
+__pycache__/
+*.py[cod]
+*.so
+venv/
+.env
+.pytest_cache/
+#C
+# 编译产物
+*.o
+*.obj
+*.exe
+*.out
+*.app
+*.i
+*.s
+*.ko
+*.elf
+
+# 静态/动态库
+*.lib
+*.a
+*.la
+*.lo
+*.dll
+*.so
+*.so.*
+*.dylib
+*.dylib.*
+
+# 调试/符号文件
+*.dSYM/
+*.su
+*.idb
+*.pdb
+*.ilk
+*.gcda
+*.gcno
+*.gcov
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
+
+# Autotools
+Makefile
+Makefile.in
+/aclocal.m4
+/autom4te.cache/
+/config.log
+/config.status
+/config.h
+/config.h.in
+/stamp-h1
+/libtool
+.deps/
+.libs/
+
+# Ninja
+.ninja_deps
+.ninja_log
+build.ninja
+
+# Visual Studio
+.vs/
+x64/
+x86/
+Debug/
+Release/
+*.vcxproj.user
+*.vcxproj.filters
+
+# CLion / JetBrains
+.idea/
+cmake-build-*/
+*.iml
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# 依赖子目录（如第三方源码）
+third_party/
+vendor/
+
+# 包管理器
+conan.lock
+conanbuildinfo.*
+vcpkg_installed/
+
+# 临时文件
+*~
+*.swp
+*.tmp
+.DS_Store
+Thumbs.db
+#自定义
+pythonProject/pythonProject/quick_fill.py
