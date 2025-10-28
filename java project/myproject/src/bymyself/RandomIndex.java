@@ -3,7 +3,7 @@ package bymyself;
 import java.util.Random;
 
 /**
-    Author: YinXueZhou
+    Author: Ynez Ark
     Date: 2025/10/23 23:47
 */
 public class RandomIndex {
