@@ -25,16 +25,16 @@ int main(){
             divisor *= 10;}
         result = (temp / divisor);
         switch (result) {
-            case 0: printf("Áã"); break;
-            case 1: printf("Ò»"); break;
-            case 2: printf("¶þ"); break;
-            case 3: printf("Èý"); break;
-            case 4: printf("ËÄ"); break;
-            case 5: printf("Îå"); break;
-            case 6: printf("Áù"); break;
-            case 7: printf("Æß"); break;
-            case 8: printf("°Ë"); break;
-            case 9: printf("¾Å"); break;
+            case 0: printf("é›¶"); break;
+            case 1: printf("ä¸€"); break;
+            case 2: printf("äºŒ"); break;
+            case 3: printf("ä¸‰"); break;
+            case 4: printf("å››"); break;
+            case 5: printf("äº”"); break;
+            case 6: printf("å…­"); break;
+            case 7: printf("ä¸ƒ"); break;
+            case 8: printf("å…«"); break;
+            case 9: printf("ä¹"); break;
         }
         if(temp>9){ printf(" ");}
         temp %= divisor;
