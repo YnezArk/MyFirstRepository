@@ -3,6 +3,8 @@
     Date: 2025/10/30 19:50
 */
 #include "stdio.h"
+#include "stdlib.h "
+
 int main(){
     int num1, num2;
     char op;
@@ -25,4 +27,7 @@ int main(){
 
     }
 
+    printf("\n");
+    system("pause");   // 关键：等待用户按键
+    return 0;
 }
