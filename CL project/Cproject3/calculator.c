@@ -6,6 +6,7 @@
 #include "stdlib.h "
 
 int main(){
+    system("chcp 65001 > nul");
     int num1, num2;
     char op;
     printf("输入算式\n");
@@ -27,7 +28,7 @@ int main(){
 
     }
 
-    printf("\n");
-    system("pause");   // 关键：等待用户按键
+     printf("\n");
+    system("pause"); // 关键：等待用户按键
     return 0;
 }
