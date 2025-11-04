@@ -8,6 +8,9 @@ import time
 import os
 
 
+from datetime import datetime
+
+
 def get_sicau_notices():
     """
     获取四川农业大学生命科学学院通知公告
@@ -398,6 +401,57 @@ def display_notices_preview(notices, title="四川农业大学生命科学学院
         print("-" * 80)
 
 
+
+
+
+def send_wechat_push(notices, sckey):
+    """
+    使用Server酱推送微信通知
+    """
+    if not notices:
+        return False
+
+    # 生成推送内容
+    title = f"川农生命学院最新通知({datetime.now().strftime('%m-%d')})"
+
+    # 构建消息内容（限制在2000字符内）
+    content = f"📢 四川农业大学生命科学学院\n⏰ 更新时间: {datetime.now().strftime('%Y-%m-%d %H:%M')}\n"
+    content += f"📋 共{len(notices)}条新通知\n\n"
+
+    # 只显示前5条通知，避免内容过长
+    for i, notice in enumerate(notices[:5]):
+        content += f"{i + 1}. {notice['标题']}\n"
+        content += f"   时间: {notice['发布时间']}\n"
+        if i < len(notices) - 1:  # 不是最后一条就加空行
+            content += "\n"
+
+    if len(notices) > 5:
+        content += f"\n...还有{len(notices) - 5}条通知，请查看详情"
+
+    content += f"\n\n🔗 查看详情: https://smkx.sicau.edu.cn/xwjtz/tzgg.htm"
+
+    try:
+        url = f"https://sctapi.ftqq.com/{sckey}.send"
+        data = {
+            "title": title,
+            "desp": content
+        }
+
+        response = requests.post(url, data=data)
+        result = response.json()
+
+        if result.get('code') == 0:
+            print("✅ 微信推送成功！")
+            return True
+        else:
+            print(f"❌ 微信推送失败: {result.get('message')}")
+            return False
+
+    except Exception as e:
+        print(f"❌ 微信推送出错: {e}")
+        return False
+
+
 def main():
     """
     主函数
@@ -440,6 +494,10 @@ def main():
 
     else:
         print("未能获取到任何通知信息")
+    if all_notices:
+        # Server酱推送（只需要一个KEY）
+        sckey = "SCT301452TyhqmvrehAIcI5GoDT6yKqxTB"  # 在 https://sct.ftqq.com 免费获取
+        send_wechat_push(all_notices, sckey)
 
 
 if __name__ == "__main__":
