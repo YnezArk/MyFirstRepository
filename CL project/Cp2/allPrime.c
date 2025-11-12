@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 
-int isPrimeF2(int num){
+int isPrimeF(int num){
     if(num != 1){
         for(int i = 2;i<num ;i++ ){
             if (num % i == 0){
@@ -18,9 +18,11 @@ int isPrimeF2(int num){
         return 0;
     }}
 int main() {
-    for (int i = 2; i <= 1000; i++) {
-        if (isPrimeF2(i)){
-            printf("%d  ",i);
+    for (int i = 30; i <= 70; i++) {
+        if (isPrimeF(i)){
+            printf("%d是质数\n",i);
+        } else {
+            printf("%d是不质数\n",i);
         }
     }
 }
