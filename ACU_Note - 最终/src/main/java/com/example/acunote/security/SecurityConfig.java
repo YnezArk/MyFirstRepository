@@ -18,13 +18,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-
+// 配置安全过滤链
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
-
+// JWT过滤器
     @Autowired
     private JwtFilter jwtFilter;
-
+// 安全过滤链
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
@@ -38,7 +38,7 @@ public class SecurityConfig {
 
         return http.build();
     }
-
+// 认证管理
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         return http.getSharedObject(AuthenticationManagerBuilder.class)
@@ -47,7 +47,7 @@ public class SecurityConfig {
                 .and()
                 .build();
     }
-
+// 密码编码器
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance(); // 暂不加密，仅测试

@@ -13,13 +13,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/notes")
 public class NoteController {
-
+// 笔记
     @Autowired
     private NoteRepository noteRepository;
-
+// 用户
     @Autowired
     private UserRepository userRepository;
-
+// 创建笔记
     @PostMapping
     public Note createNote(@RequestBody Note note) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -27,14 +27,14 @@ public class NoteController {
         note.setOwner(owner);
         return noteRepository.save(note);
     }
-
+// 获取我的笔记
     @GetMapping
     public List<Note> getMyNotes() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByUsername(username).orElse(null);
         return noteRepository.findByOwner_Id(user.getId());
     }
-
+// 获取笔记详情
     @GetMapping("/{id}")
     public Note getNoteById(@PathVariable Long id) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -45,7 +45,7 @@ public class NoteController {
         }
         throw new RuntimeException("Access denied");
     }
-
+// 更新笔记
     @PutMapping("/{id}")
     public Note updateNote(@PathVariable Long id, @RequestBody Note note) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -58,7 +58,7 @@ public class NoteController {
         existingNote.setContent(note.getContent());
         return noteRepository.save(existingNote);
     }
-
+// 删除笔记
     @DeleteMapping("/{id}")
     public void deleteNote(@PathVariable Long id) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();

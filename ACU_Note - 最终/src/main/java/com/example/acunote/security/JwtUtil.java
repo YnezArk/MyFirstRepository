@@ -11,11 +11,11 @@ import java.util.Map;
 
 @Component
 public class JwtUtil {
-
-    private final String SECRET_KEY =
-            "YnezArkdeVeryLongSecretKeyStringHereWithAtLeast64CharactersforSecurityAndMyNameIsYinXuezhou666AndILoveMinecraftwhenIwasYoung"; // 生产环境用安全密钥
-    private final long EXPIRATION = 86400000; // 24 小时
-
+// 密钥
+    private final String SECRET_KEY =// 这里是密钥，很长很长很长
+            "YnezArkdeVeryLongSecretKeyStringHereWithAtLeast64CharactersforSecurityAndMyNameIsYinXuezhou666AndILoveMinecraftwhenIwasYoung";
+    private final long EXPIRATION = 86400000; // token过期时间24 小时
+// 生成token
     public String generateToken(String username) {
         Map<String, Object> claims = new HashMap<>();
         return Jwts.builder()
@@ -26,22 +26,22 @@ public class JwtUtil {
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
                 .compact();
     }
-
+// 验证token
     public Boolean validateToken(String token, String username) {
         final String extractedUsername = extractUsername(token);
         return (extractedUsername.equals(username) && !isTokenExpired(token));
     }
-
+// 获取token中的用户名
     public String extractUsername(String token) {
         final Claims claims = extractAllClaims(token);
         return claims.getSubject();
     }
-
+// 判断token是否过期
     public Boolean isTokenExpired(String token) {
         final Date expiration = extractExpiration(token);
         return expiration.before(new Date());
     }
-
+// 获取token中的所有信息
     private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(SECRET_KEY)
@@ -49,7 +49,7 @@ public class JwtUtil {
                 .parseClaimsJws(token)
                 .getBody();
     }
-
+// 获取token中的过期时间
     private Date extractExpiration(String token) {
         return extractAllClaims(token).getExpiration();
     }

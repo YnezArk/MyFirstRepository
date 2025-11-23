@@ -16,24 +16,25 @@ import java.io.IOException;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
-
+// JWT过滤器
     @Autowired
     private JwtUtil jwtUtil;
-
+// 用户详情服务
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
-
+// 过滤器
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-            throws ServletException, IOException {
+            throws ServletException, IOException {// 获取请求头中的JWT令牌
         System.out.println(">>> Request URI: " + request.getRequestURI());
         System.out.println(">>> Authorization Header: " + request.getHeader("Authorization"));
 
         String requestTokenHeader = request.getHeader("Authorization");
-
+// 用户名
         String username = null;
+        // JWT令牌
         String jwtToken = null;
-
+// 从请求头中获取JWT令牌
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             jwtToken = requestTokenHeader.substring(7);
             try {
@@ -44,10 +45,10 @@ public class JwtFilter extends OncePerRequestFilter {
         } else {
             System.out.println("JWT Token does not start with Bearer");
         }
-
+// 验证JWT令牌
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(username);
-
+// 验证令牌
             if (jwtUtil.validateToken(jwtToken, username)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

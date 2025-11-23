@@ -80,7 +80,7 @@
         </dependency>
 
 
-        <!-- Lombok (可选，简化代码) -->
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
